@@ -11,17 +11,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class Window {
+public class Window{
 	
-	Main main; 
 	JFrame frame;
 	private JTextField adrField;
 	private JLabel adrLabel;
 	private JTextArea consloleField;
 	private JScrollPane scrollPane;
 
-	public Window(Main main) {
-		this.main = main;
+	public Window() {
 		initialize();
 	}
 
@@ -39,7 +37,7 @@ public class Window {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				main.calling(adrField.getText());
+				Main.calling(adrField.getText());
 			}
 		});
 		
