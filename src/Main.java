@@ -66,7 +66,7 @@ public class Main {
 			break;
 			
 		case "BYE":
-			sendMessage("200 OK", output);
+			sendMessage("ACK", output);
 			return true;
 
 		default:

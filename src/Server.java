@@ -15,35 +15,37 @@ public class Server implements Runnable {
 	
 	@Override
 	public void run() {
-		window.print("Inicjacja servera...");
-		try{
-			ServerSocket server = new ServerSocket(9666, 10);
-			window.print("Oczekiwanie na klienta...");
-	        Socket client = server.accept();
-	        window.print("Otrzymano połączenie przychodzące od "+ client.getInetAddress().getHostName());
-	        
-	        ObjectOutputStream output = new ObjectOutputStream(client.getOutputStream());
-            output.flush();
-            ObjectInputStream input = new ObjectInputStream(client.getInputStream());
-            Boolean bye = false;
-            while(!bye){
-            	String info = (String)input.readObject();
-            	window.print("OTRZYMANO:\t" + info);
-            	String message = info;
-            	bye = Main.responseHendler(true, message, output, input, client.getInetAddress().getHostAddress());
-            }
-            
-            server.close();
-	        
-		}catch (BindException e){
-			window.print("BŁĄD: Podany port jest już wykorzystywany!");
-		} catch (ClassNotFoundException e) {
-			window.print("BŁĄD: " + e.getMessage());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		while(true){
+			window.print("Inicjacja servera...");
+			try{
+				ServerSocket server = new ServerSocket(9666, 10);
+				window.print("Oczekiwanie na klienta...");
+		        Socket client = server.accept();
+		        window.print("Otrzymano połączenie przychodzące od "+ client.getInetAddress().getHostName());
+		        
+		        ObjectOutputStream output = new ObjectOutputStream(client.getOutputStream());
+	            output.flush();
+	            ObjectInputStream input = new ObjectInputStream(client.getInputStream());
+	            Boolean bye = false;
+	            while(!bye){
+	            	String info = (String)input.readObject();
+	            	window.print("OTRZYMANO:\t" + info);
+	            	String message = info;
+	            	bye = Main.responseHendler(true, message, output, input, client.getInetAddress().getHostAddress());
+	            }
+	            
+	            server.close();
+		        
+			}catch (BindException e){
+				window.print("BŁĄD: Podany port jest już wykorzystywany!");
+			} catch (ClassNotFoundException e) {
+				window.print("BŁĄD: " + e.getMessage());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-
 	}
 
 }
