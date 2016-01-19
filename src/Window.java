@@ -18,6 +18,7 @@ public class Window{
 	private JLabel adrLabel;
 	private JTextArea consloleField;
 	private JScrollPane scrollPane;
+	private JButton callBtn;
 
 	public Window() {
 		initialize();
@@ -30,7 +31,7 @@ public class Window{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton callBtn = new JButton("Zadzwoń");
+		callBtn = new JButton("Zadzwoń");
 		callBtn.setBounds(329, 6, 117, 29);
 		frame.getContentPane().add(callBtn);
 		callBtn.addActionListener(new ActionListener() {
@@ -81,4 +82,8 @@ public class Window{
 		vertical.setValue( vertical.getMaximum() );
 	}
 
+	public void inputSetEneble(Boolean state){
+		adrField.setEnabled(state);
+		callBtn.setEnabled(state);
+	}
 }

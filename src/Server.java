@@ -17,11 +17,13 @@ public class Server implements Runnable {
 	public void run() {
 		
 		while(true){
+	        window.inputSetEneble(true);
 			window.print("Inicjacja servera...");
 			try{
 				ServerSocket server = new ServerSocket(9666, 10);
 				window.print("Oczekiwanie na klienta...");
 		        Socket client = server.accept();
+		        window.inputSetEneble(false);
 		        window.print("Otrzymano połączenie przychodzące od "+ client.getInetAddress().getHostName());
 		        
 		        ObjectOutputStream output = new ObjectOutputStream(client.getOutputStream());

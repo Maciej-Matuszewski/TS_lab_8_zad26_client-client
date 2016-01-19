@@ -17,6 +17,7 @@ public class Client implements Runnable{
 	@Override
 	public void run() {
 		window.print("Dzwonienie pod adres: " + ip);
+        window.inputSetEneble(false);
 		Socket client = null;
 		try {
 			client = new Socket(ip, 9666);
@@ -32,6 +33,8 @@ public class Client implements Runnable{
             	String message = info;
             	bye = Main.responseHendler(false, message, output, input, ip);
             }
+
+	        window.inputSetEneble(true);
 			
 		} catch (UnknownHostException e) {
 			window.print("BŁĄD: Nieprawidłowy adres IP!");
