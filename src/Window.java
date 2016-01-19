@@ -75,7 +75,7 @@ public class Window{
 	
 	public void scrollToBottom(){
 		try {
-		    Thread.sleep(50);
+		    Thread.sleep(250);
 		} catch(InterruptedException ex) {
 		}
 		JScrollBar vertical = scrollPane.getVerticalScrollBar();
