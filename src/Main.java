@@ -38,7 +38,7 @@ public class Main {
         }
     }
 	
-	public static Boolean responseHendler(Boolean isServer, String message, ObjectOutputStream output, ObjectInputStream input){
+	public static Boolean responseHendler(Boolean isServer, String message, ObjectOutputStream output, ObjectInputStream input, String partnerIP){
 		switch (message) {
 		////////////////////////////////////////////////
 		
@@ -58,12 +58,8 @@ public class Main {
 		case "INVITE":
 			sendMessage("100 Trying", output);
 			sendMessage("180 Ringing", output);
-			try {
-				if(JOptionPane.showConfirmDialog(null, "Czy chcesz odebraæ po³¹czenie od "+(String)input.readObject()+"?", "", 0) == 0) sendMessage("200 OK", output);
-				else sendMessage("486 Busy Here", output);
-			} catch (HeadlessException | ClassNotFoundException | IOException e) {
-				window.print("BŁĄD: "+e.getMessage());
-			}
+			if(JOptionPane.showConfirmDialog(null, "Czy chcesz odebraæ po³¹czenie od " + partnerIP + "?", "", 0) == 0) sendMessage("200 OK", output);
+			else sendMessage("486 Busy Here", output);
 			break;
 		
 		case "ACK":

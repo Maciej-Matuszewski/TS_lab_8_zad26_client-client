@@ -30,7 +30,7 @@ public class Server implements Runnable {
             	String info = (String)input.readObject();
             	window.print("OTRZYMANO:\t" + info);
             	String message = info;
-            	bye = Main.responseHendler(true, message, output, input);
+            	bye = Main.responseHendler(true, message, output, input, client.getInetAddress().getHostAddress());
             }
             
             server.close();

@@ -30,7 +30,7 @@ public class Client implements Runnable{
             	String info = (String)input.readObject();
             	window.print("OTRZYMANO:\t" + info);
             	String message = info;
-            	bye = Main.responseHendler(false, message, output, input);
+            	bye = Main.responseHendler(false, message, output, input, ip);
             }
 			
 		} catch (UnknownHostException e) {
