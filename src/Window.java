@@ -27,12 +27,12 @@ public class Window{
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 452, 301);
+		frame.setBounds(100, 100, 505, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		callBtn = new JButton("ZadzwoÅ„");
-		callBtn.setBounds(329, 6, 117, 29);
+		callBtn = new JButton("Zadzwoñ");
+		callBtn.setBounds(370, 10, 120, 24);
 		frame.getContentPane().add(callBtn);
 		callBtn.addActionListener(new ActionListener() {
 			
@@ -43,21 +43,21 @@ public class Window{
 		});
 		
 		adrField = new JTextField();
-		adrField.setBounds(79, 6, 238, 26);
+		adrField.setBounds(80, 10, 280, 25);
 		frame.getContentPane().add(adrField);
 		adrField.setColumns(10);
 		
 		adrLabel = new JLabel("Adres IP:");
-		adrLabel.setBounds(6, 11, 61, 16);
+		adrLabel.setBounds(10, 10, 60, 25);
 		frame.getContentPane().add(adrLabel);
 		
 		Canvas canvas = new Canvas();
 		canvas.setBackground(Color.DARK_GRAY);
-		canvas.setBounds(6, 41, 440, 1);
+		canvas.setBounds(10, 45, 480, 1);
 		frame.getContentPane().add(canvas);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(6, 47, 440, 226);
+		scrollPane.setBounds(10, 55, 480, 310);
 		frame.getContentPane().add(scrollPane);
 		
 		consloleField = new JTextArea();

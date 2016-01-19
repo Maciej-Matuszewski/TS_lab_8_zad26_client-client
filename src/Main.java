@@ -30,7 +30,7 @@ public class Main {
         try{
             output.writeObject(message);
             output.flush();
-        	window.print("WYS≈ÅANO:\t" + message);
+        	window.print("WYS≥ANO:\t" + message);
         }
         catch(IOException ioException){
             ioException.printStackTrace();
@@ -47,7 +47,8 @@ public class Main {
 		
 		case "200 OK":
 			sendMessage("ACK", output);
-			String sendMsg = JOptionPane.showInputDialog("Podaj tre≈õƒá wiadomo≈õci:"); 
+			String sendMsg = JOptionPane.showInputDialog("Podaj treúÊ wiadomoúci:"); 
+			if(sendMsg == null)sendMsg = "BYE";
 			sendMessage(sendMsg, output);
 			if(sendMsg.equals("BYE"))return true;
 			break;
@@ -59,7 +60,7 @@ public class Main {
 		case "INVITE":
 			sendMessage("100 Trying", output);
 			sendMessage("180 Ringing", output);
-			if(JOptionPane.showConfirmDialog(null, "Czy chcesz odebra√¶ po¬≥¬πczenie od " + partnerIP + "?", "", 0) == 0) sendMessage("200 OK", output);
+			if(JOptionPane.showConfirmDialog(null, "Czy chcesz odebraÊ po≥πczenie od " + partnerIP + "?", "", 0) == 0) sendMessage("200 OK", output);
 			else sendMessage("486 Busy Here", output);
 			break;
 		
@@ -71,7 +72,8 @@ public class Main {
 			return true;
 
 		default:
-			String sendMsg1 = JOptionPane.showInputDialog("Podaj tre≈õƒá wiadomo≈õci:"); 
+			String sendMsg1 = JOptionPane.showInputDialog("Podaj treúÊ wiadomoúci:");
+			if(sendMsg1 == null)sendMsg1 = "BYE";
 			sendMessage(sendMsg1, output);
 			if(sendMsg1.equals("BYE"))return true;
 			break;

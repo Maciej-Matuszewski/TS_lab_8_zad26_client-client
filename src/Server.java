@@ -18,13 +18,13 @@ public class Server implements Runnable {
 		
 		while(true){
 	        window.inputSetEneble(true);
-			window.print("Inicjacja servera...");
+			window.print("Inicjacja serwera...");
 			try{
 				ServerSocket server = new ServerSocket(9666, 10);
 				window.print("Oczekiwanie na klienta...");
 		        Socket client = server.accept();
 		        window.inputSetEneble(false);
-		        window.print("Otrzymano po≈ÇƒÖczenie przychodzƒÖce od "+ client.getInetAddress().getHostName());
+		        window.print("Otrzymano po≥πczenie przychodzπce od "+ client.getInetAddress().getHostName());
 		        
 		        ObjectOutputStream output = new ObjectOutputStream(client.getOutputStream());
 	            output.flush();
@@ -40,9 +40,9 @@ public class Server implements Runnable {
 	            server.close();
 		        
 			}catch (BindException e){
-				window.print("B≈ÅƒÑD: Podany port jest ju≈º wykorzystywany!");
+				window.print("B£•D: Podany port jest juø wykorzystywany!");
 			} catch (ClassNotFoundException e) {
-				window.print("B≈ÅƒÑD: " + e.getMessage());
+				window.print("B£•D: " + e.getMessage());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
