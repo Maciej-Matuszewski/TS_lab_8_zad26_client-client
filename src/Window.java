@@ -69,7 +69,7 @@ public class Window{
 	}
 	
 	void print(String text){
-		consloleField.setText(consloleField.getText()+text+"\n");
+		consloleField.append(text+"\n");
 		scrollToBottom();
 	}
 	

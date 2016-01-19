@@ -1,4 +1,3 @@
-import java.awt.HeadlessException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -67,6 +66,7 @@ public class Main {
 			
 		case "BYE":
 			sendMessage("ACK", output);
+			sendMessage("BYE", output);
 			return true;
 
 		default:
