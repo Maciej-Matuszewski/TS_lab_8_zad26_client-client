@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 
 public class Window {
 	
@@ -15,7 +17,8 @@ public class Window {
 	JFrame frame;
 	private JTextField adrField;
 	private JLabel adrLabel;
-	private JTextPane consloleField;
+	private JTextArea consloleField;
+	private JScrollPane scrollPane;
 
 	public Window(Main main) {
 		this.main = main;
@@ -54,15 +57,30 @@ public class Window {
 		canvas.setBounds(6, 41, 440, 1);
 		frame.getContentPane().add(canvas);
 		
-		consloleField = new JTextPane();
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(6, 47, 440, 226);
+		frame.getContentPane().add(scrollPane);
+		
+		consloleField = new JTextArea();
 		consloleField.setEditable(false);
 		consloleField.setText("");
-		consloleField.setBounds(6, 47, 440, 226);
-		frame.getContentPane().add(consloleField);
+		consloleField.setWrapStyleWord(true);
+		consloleField.setLineWrap(true);
+		scrollPane.setViewportView(consloleField);
 	}
 	
 	void print(String text){
 		consloleField.setText(consloleField.getText()+text+"\n");
+		scrollToBottom();
+	}
+	
+	public void scrollToBottom(){
+		try {
+		    Thread.sleep(50);
+		} catch(InterruptedException ex) {
+		}
+		JScrollBar vertical = scrollPane.getVerticalScrollBar();
+		vertical.setValue( vertical.getMaximum() );
 	}
 
 }
