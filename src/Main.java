@@ -47,7 +47,9 @@ public class Main {
 		
 		case "200 OK":
 			sendMessage("ACK", output);
-			sendMessage(JOptionPane.showInputDialog("Podaj treść wiadomości:"), output);
+			String sendMsg = JOptionPane.showInputDialog("Podaj treść wiadomości:"); 
+			sendMessage(sendMsg, output);
+			if(sendMsg.equals("BYE"))return true;
 			break;
 			
 		case "486 Busy Here":
@@ -66,11 +68,12 @@ public class Main {
 			
 		case "BYE":
 			sendMessage("ACK", output);
-			sendMessage("BYE", output);
 			return true;
 
 		default:
-			sendMessage(JOptionPane.showInputDialog("Podaj treść wiadomości:"), output);
+			String sendMsg1 = JOptionPane.showInputDialog("Podaj treść wiadomości:"); 
+			sendMessage(sendMsg1, output);
+			if(sendMsg1.equals("BYE"))return true;
 			break;
 		}
 		
