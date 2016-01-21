@@ -117,9 +117,63 @@ public class Main {
 		return Data;
 	}
 	
+	public static void sendBye(String partnerIP, ObjectOutputStream output){
+		sendMessage(generateRequest("BYE", partnerIP, ""), output);
+	}
+	
+	private static int tryCount = 0;
 	public static Boolean responseHendler(Boolean isServer, String message, ObjectOutputStream output, ObjectInputStream input, String partnerIP){
-		switch (message) {
+		String[] lines= message.split("\n");
+		String[] words=lines[0].split(" ");
+		switch (words[1].contains("Request")?words[1]:words[2]) {
 		////////////////////////////////////////////////
+		
+		case "INVITE":
+			sendMessage(generateResponse("100 Trying", "INVITE", partnerIP, ""), output);
+			sendMessage(generateResponse("180 Ringing", "INVITE", partnerIP, ""), output);
+			if(rnd.nextInt(10)<4)sendMessage(generateResponse("406 Not Acceptable", "INVITE", partnerIP, ""), output);
+			else{
+				if(JOptionPane.showConfirmDialog(null, "Czy chcesz odebraæ po³¹czenie od " + partnerIP + "?", "", 0) == 0)sendMessage(generateResponse("200 OK", "INVITE", partnerIP, ""), output);
+				else sendMessage(generateResponse("488 Not Acceptable Here", "INVITE", partnerIP, ""), output);
+			}
+			
+			break;
+			
+		case "ACK":
+			System.out.print("Okienko!");
+			break;
+			
+		case "BYE":
+			sendMessage(generateResponse("200 OK", "BYE", partnerIP, ""), output);
+			return true;
+			
+		case "100":
+		case "180":
+			break;
+			
+		case "200":
+			if(message.contains("BYE"))return true;
+			if(message.contains("INVITE")){
+				tryCount = 0;
+				sendMessage(generateRequest("ACK", partnerIP, ""), output);
+				System.out.print("Okienko!");
+			}
+			break;
+			
+		case "406":
+			if(tryCount<2){
+				tryCount++;
+				sendMessage(generateRequest("INVITE", partnerIP, generateData(partnerIP)), output);
+			}else{
+				tryCount=0;
+				sendMessage(generateRequest("BYE", partnerIP, ""), output);
+				return true;
+			}
+			break;
+			
+		case "488":
+			sendMessage(generateRequest("BYE", partnerIP, ""), output);
+			break;
 		/*
 		case "100 Trying":
 		case "180 Ringing":
