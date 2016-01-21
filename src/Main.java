@@ -66,12 +66,11 @@ public class Main {
 		block+="sip:" + partnerIP + " ";
 		block+="SIP/2.0" + " ";
 		block+="\n";
-		block+="From:<sip:" + currentIP+"> ";
-		block+="To:<sip:" + partnerIP+"> ";
-		block+="Call-ID:" + callID + " ";
-		block+="CSeq:1_"+method + " ";
-		block+="Contact:<sip:" + currentIP+"> ";
-		block+="\n";
+		block+="From:<sip:" + currentIP+">\n";
+		block+="To:<sip:" + partnerIP+">\n";
+		block+="Call-ID:" + callID + "\n";
+		block+="CSeq:1_"+method + "\n";
+		block+="Contact:<sip:" + currentIP+">\n";
 		if(!data.equals(""))block+="\n"+data;
 		
 		return block;
