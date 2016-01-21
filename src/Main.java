@@ -52,7 +52,7 @@ public class Main {
         try{
             output.writeObject(message);
             output.flush();
-        	window.print("\nWYSï¿½ANO:\n" + message+"\n");
+        	window.print("\nWYS£ANO:\n" + message+"\n");
         }
         catch(IOException ioException){
             ioException.printStackTrace();
@@ -134,7 +134,7 @@ public class Main {
 			sendMessage(generateResponse("180 Ringing", "INVITE", partnerIP, ""), output);
 			if(rnd.nextInt(10)<4)sendMessage(generateResponse("406 Not Acceptable", "INVITE", partnerIP, ""), output);
 			else{
-				if(JOptionPane.showConfirmDialog(null, "Czy chcesz odebraï¿½ poï¿½ï¿½czenie od " + partnerIP + "?", "", 0) == 0)sendMessage(generateResponse("200 OK", "INVITE", partnerIP, ""), output);
+				if(JOptionPane.showConfirmDialog(null, "Czy chcesz odebraæ po³¹czenie od " + partnerIP + "?", "", 0) == 0)sendMessage(generateResponse("200 OK", "INVITE", partnerIP, ""), output);
 				else sendMessage(generateResponse("488 Not Acceptable Here", "INVITE", partnerIP, ""), output);
 			}
 			
@@ -179,44 +179,7 @@ public class Main {
 		case "488":
 			sendMessage(generateRequest("BYE", partnerIP, ""), output);
 			break;
-		/*
-		case "100 Trying":
-		case "180 Ringing":
-			break;
-		
-		case "200 OK":
-			sendMessage("ACK", output);
-			String sendMsg = JOptionPane.showInputDialog("Podaj treï¿½ï¿½ wiadomoï¿½ci:"); 
-			if(sendMsg == null)sendMsg = "BYE";
-			sendMessage(sendMsg, output);
-			if(sendMsg.equals("BYE"))return true;
-			break;
-			
-		case "486 Busy Here":
-			sendMessage("BYE", output);
-			return true;
-			
-		case "INVITE":
-			sendMessage("100 Trying", output);
-			sendMessage("180 Ringing", output);
-			if(JOptionPane.showConfirmDialog(null, "Czy chcesz odebraï¿½ poï¿½ï¿½czenie od " + partnerIP + "?", "", 0) == 0) sendMessage("200 OK", output);
-			else sendMessage("486 Busy Here", output);
-			break;
-		
-		case "ACK":
-			break;
-			
-		case "BYE":
-			sendMessage("ACK", output);
-			return true;
-		//*/
 		default:
-			/*
-			String sendMsg1 = JOptionPane.showInputDialog("Podaj treï¿½ï¿½ wiadomoï¿½ci:");
-			if(sendMsg1 == null)sendMsg1 = "BYE";
-			sendMessage(sendMsg1, output);
-			if(sendMsg1.equals("BYE"))return true;
-			//*/
 			break;
 		}
 		

@@ -42,7 +42,7 @@ public class Server implements Runnable {
 			}catch (BindException e){
 				window.print("B£¥D: Podany port jest ju¿ wykorzystywany!");
 			    try {
-					Thread.sleep(250);
+					Thread.sleep(1000);
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

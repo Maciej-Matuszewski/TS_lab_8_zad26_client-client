@@ -63,8 +63,6 @@ public class Window{
 		consloleField = new JTextArea();
 		consloleField.setEditable(false);
 		consloleField.setText("");
-		consloleField.setWrapStyleWord(true);
-		consloleField.setLineWrap(true);
 		scrollPane.setViewportView(consloleField);
 	}
 	
@@ -74,10 +72,6 @@ public class Window{
 	}
 	
 	public void scrollToBottom(){
-		try {
-		    Thread.sleep(250);
-		} catch(InterruptedException ex) {
-		}
 		JScrollBar vertical = scrollPane.getVerticalScrollBar();
 		vertical.setValue( vertical.getMaximum() );
 	}

@@ -36,7 +36,7 @@ public class Client implements Runnable{
 	        window.inputSetEneble(true);
 			
 		} catch (UnknownHostException e) {
-			window.print("Bï¿½ï¿½D: Nieprawidï¿½owy adres IP!");
+			window.print("B£¥D: Nieprawid³owy adres IP!");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
