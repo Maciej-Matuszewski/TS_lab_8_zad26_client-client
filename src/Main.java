@@ -125,7 +125,7 @@ public class Main {
 	public static Boolean responseHendler(Boolean isServer, String message, ObjectOutputStream output, ObjectInputStream input, String partnerIP){
 		String[] lines= message.split("\n");
 		String[] words=lines[0].split(" ");
-		switch (words[0].contains("Request")?words[1]:words[2]) {
+		switch (words[1].contains("Request")?words[1]:words[2]) {
 		////////////////////////////////////////////////
 		
 		case "INVITE":
@@ -140,7 +140,7 @@ public class Main {
 			break;
 			
 		case "ACK":
-			new DisconnectWindow(partnerIP, output);
+			System.out.print("Okienko!");
 			break;
 			
 		case "BYE":
@@ -156,7 +156,7 @@ public class Main {
 			if(message.contains("INVITE")){
 				tryCount = 0;
 				sendMessage(generateRequest("ACK", partnerIP, ""), output);
-				new DisconnectWindow(partnerIP, output);
+				System.out.print("Okienko!");
 			}
 			break;
 			
