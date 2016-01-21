@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 public class Main {
 
 	private static Window window;
+	private static DisconnectWindow disconnectWindow = null;
 	public static String currentIP = "0.0.0.0";
 	public static String callID = "";
 	/**
@@ -133,17 +134,21 @@ public class Main {
 			sendMessage(generateResponse("180 Ringing", "INVITE", partnerIP, ""), output);
 			if(rnd.nextInt(10)<4)sendMessage(generateResponse("406 Not Acceptable", "INVITE", partnerIP, ""), output);
 			else{
-				if(JOptionPane.showConfirmDialog(null, "Czy chcesz odebraæ po³¹czenie od " + partnerIP + "?", "", 0) == 0)sendMessage(generateResponse("200 OK", "INVITE", partnerIP, ""), output);
+				if(JOptionPane.showConfirmDialog(null, "Czy chcesz odebraï¿½ poï¿½ï¿½czenie od " + partnerIP + "?", "", 0) == 0)sendMessage(generateResponse("200 OK", "INVITE", partnerIP, ""), output);
 				else sendMessage(generateResponse("488 Not Acceptable Here", "INVITE", partnerIP, ""), output);
 			}
 			
 			break;
 			
 		case "ACK":
-			new DisconnectWindow(partnerIP, output);
+			disconnectWindow = new DisconnectWindow(partnerIP, output);
 			break;
 			
 		case "BYE":
+			if(disconnectWindow != null){
+				disconnectWindow.dispose();
+				disconnectWindow = null;
+			}
 			sendMessage(generateResponse("200 OK", "BYE", partnerIP, ""), output);
 			return true;
 			
@@ -156,7 +161,7 @@ public class Main {
 			if(message.contains("INVITE")){
 				tryCount = 0;
 				sendMessage(generateRequest("ACK", partnerIP, ""), output);
-				new DisconnectWindow(partnerIP, output);
+				disconnectWindow = new DisconnectWindow(partnerIP, output);
 			}
 			break;
 			
