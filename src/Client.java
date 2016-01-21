@@ -24,7 +24,7 @@ public class Client implements Runnable{
 			ObjectOutputStream output = new ObjectOutputStream(client.getOutputStream());
             output.flush();
             ObjectInputStream input = new ObjectInputStream(client.getInputStream());
-			Main.sendMessage(Main.generateRequest("INVITE", ip, ""), output);
+			Main.sendMessage(Main.generateRequest("INVITE", ip, Main.generateData(ip)), output);
 			
 			Boolean bye = false;
             while(!bye){

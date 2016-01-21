@@ -24,21 +24,20 @@ public class Main {
 		tS.start();
 		try {
 			currentIP=Inet4Address.getLocalHost().getHostAddress();
-			callID = randomString(6) + "-" + randomString(4) + "-" + randomString(4) + "-" + randomString(8) + "@" + currentIP; 
+			callID = randomString(6, "0123456789ABCDEF") + "-" + randomString(4,"0123456789ABCDEF") + "-" + randomString(4,"0123456789ABCDEF") + "-" + randomString(8, "0123456789ABCDEF") + "@" + currentIP; 
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
-	
-	static final String AB = "0123456789ABCDEF";
+
     static Random rnd = new Random();
 
-    static String randomString( int len ){
+    static String randomString( int len, String ab ){
         StringBuilder sb = new StringBuilder( len );
         for( int i = 0; i < len; i++ )
-            sb.append( AB.charAt( rnd.nextInt(AB.length()) ) );
+            sb.append( ab.charAt( rnd.nextInt(ab.length()) ) );
         return sb.toString();
     }
 	
@@ -91,6 +90,31 @@ public class Main {
 		if(!data.equals(""))block+="\n"+data;
 		
 		return block;
+	}
+	
+	public static String generateRtp(){
+		switch(rnd.nextInt(7)){
+		case 0: return "0";
+		case 1: return "4";
+		case 2: return "8";
+		case 3: return "9";
+		case 4: return "13";
+		case 5: return "15";
+		case 6: return "18";
+		case 7: return "2";
+		default: return "-1";
+		}
+	}
+	
+	public static String generateData(String partnerIP){
+		String Data="";
+		Data+="Session Description Protocol Version (v): 0\n";
+		Data+="Session Id (o): " + randomString(9, "123456789") + "IN IP4 " + currentIP + "\n";
+		Data+="Session Name (s): SIPPER for " + partnerIP + "\n";
+		Data+="Time Description (t): 0 0\n";
+		Data+="Media Description (m): audio " + (rnd.nextInt(200)+5005) + " RTP/AVP " + generateRtp() + "\n";
+		
+		return Data;
 	}
 	
 	public static Boolean responseHendler(Boolean isServer, String message, ObjectOutputStream output, ObjectInputStream input, String partnerIP){
