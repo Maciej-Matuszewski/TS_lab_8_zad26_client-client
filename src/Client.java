@@ -28,9 +28,8 @@ public class Client implements Runnable{
 			
 			Boolean bye = false;
             while(!bye){
-            	String info = (String)input.readObject();
-            	window.print("OTRZYMANO:\t" + info);
-            	String message = info;
+            	String message = (String)input.readObject();
+            	window.print("OTRZYMANO:\t" + message);
             	bye = Main.responseHendler(false, message, output, input, ip);
             }
 
