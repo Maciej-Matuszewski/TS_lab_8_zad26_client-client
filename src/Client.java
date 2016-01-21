@@ -24,7 +24,7 @@ public class Client implements Runnable{
 			ObjectOutputStream output = new ObjectOutputStream(client.getOutputStream());
             output.flush();
             ObjectInputStream input = new ObjectInputStream(client.getInputStream());
-			Main.sendMessage("INVITE", output);
+			Main.sendMessage(Main.generateRequest("INVITE", ip, ""), output);
 			
 			Boolean bye = false;
             while(!bye){
@@ -37,7 +37,7 @@ public class Client implements Runnable{
 	        window.inputSetEneble(true);
 			
 		} catch (UnknownHostException e) {
-			window.print("B£¥D: Nieprawid³owy adres IP!");
+			window.print("Bï¿½ï¿½D: Nieprawidï¿½owy adres IP!");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
