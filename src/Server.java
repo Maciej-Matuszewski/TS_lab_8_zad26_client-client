@@ -32,7 +32,7 @@ public class Server implements Runnable {
 	            Boolean bye = false;
 	            while(!bye){
 	            	String info = (String)input.readObject();
-	            	window.print("OTRZYMANO:\t" + info);
+	            	window.print("\nOTRZYMANO:\n" + info + "\n" );
 	            	String message = info;
 	            	bye = Main.responseHendler(true, message, output, input, client.getInetAddress().getHostAddress());
 	            }
