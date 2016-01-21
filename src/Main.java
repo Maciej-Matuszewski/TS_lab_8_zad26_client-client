@@ -51,7 +51,7 @@ public class Main {
         try{
             output.writeObject(message);
             output.flush();
-        	window.print("WYS�ANO:\t" + message);
+        	window.print("\nWYS�ANO:\n" + message+"\n");
         }
         catch(IOException ioException){
             ioException.printStackTrace();
@@ -81,11 +81,11 @@ public class Main {
 		block+="SIP/2.0" + " ";
 		block+=code + " ";
 		block+="\n";
-		block+="From:<sip:" + currentIP+"> ";
-		block+="To:<sip:" + partnerIP+"> ";
-		block+="Call-ID:" + callID + " ";
-		block+="CSeq:1_"+method + " ";
-		block+="Contact:<sip:" + currentIP+"> ";
+		block+="From:<sip:" + currentIP+">\n";
+		block+="To:<sip:" + partnerIP+">\n";
+		block+="Call-ID:" + callID + "\n";
+		block+="CSeq:1_"+method + "\n";
+		block+="Contact:<sip:" + currentIP+">";
 		block+="\n";
 		if(!data.equals(""))block+="\n"+data;
 		
