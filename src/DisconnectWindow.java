@@ -1,5 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ObjectOutputStream;
@@ -10,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 
 public class DisconnectWindow extends JFrame {
+
+	
+	private static final long serialVersionUID = 1L;
 
 	private JPanel contentPane;
 	
@@ -27,7 +29,7 @@ public class DisconnectWindow extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JButton btnRozcz = new JButton("RozÅ‚Ä…cz");
+		JButton btnRozcz = new JButton("ROZ£¥CZ");
 		contentPane.add(btnRozcz, BorderLayout.CENTER);
 		DisconnectWindow dw = this;
 		btnRozcz.addActionListener(new ActionListener() {
